@@ -18,9 +18,9 @@ signature: 'v1.eyJzdWIiOiIyMDQ4IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpY
     shift: 'https://github.com/Zapponi/mega-s01e03-what-it-shows/issues/3',
   };
   const status = {
-    parser: 'fixed, per engineering; not verified',
-    hint: "won't fix; form retired",
-    shift: 'open; no answer yet',
+    parser: 'closed: fixed, per engineering; not verified',
+    hint: "closed: won't fix; form retired",
+    shift: 'closed with #4471; no fix, no owner',
   };
 </script>
 
@@ -28,8 +28,8 @@ signature: 'v1.eyJzdWIiOiIyMDQ4IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpY
 problems. The queued fix is for the parser, which is one of them.
 
 <Callout kind="warn">
-#4471 was closed on 05 Oct. None of its three problems is done yet: each ticket below says what is
-still missing.
+#4471 was closed on 05 Oct, and its three tickets are closed with it. Only the parser has a fix,
+and nobody has verified it. Each ticket says what is still missing.
 </Callout>
 
 ## The problems
@@ -55,10 +55,10 @@ Engineering's update on #4471 (05 Oct) is a status line, with no link, test or d
 - **`hint`**: won't fix, because the booking-v3 form is retired. That stops new cases if the form
   is off; bookings already made through it keep the swapped date, some of them still ahead. The
   tenant files here still list the three tenants on booking-v3.
-- **`shift`**: not in engineering's update. Open.
+- **`shift`**: not in engineering's update; no fix and no owner. Closed with #4471. Reopen it if
+  one-day moves are reported again.
 
-The tickets stay open until each of these is answered. The export ends on 04 Oct, so nothing here
-shows whether reports stopped after the fix.
+The export ends on 04 Oct, so nothing here shows whether reports stopped after the fix.
 
 ## How the reports were told apart
 
