@@ -1,0 +1,57 @@
+---
+layout: runbook
+title: '#4471 · three problems, not one'
+owner: Zapponi
+status: open
+reviewed: 2026-10-29
+signature: Zapponi
+---
+
+<script>
+  import ProblemTable from '#lib/kb/ProblemTable.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+
+  const issues = {
+    parser: 'https://github.com/Zapponi/mega-s01e03-what-it-shows/issues/1',
+    hint: 'https://github.com/Zapponi/mega-s01e03-what-it-shows/issues/2',
+    shift: 'https://github.com/Zapponi/mega-s01e03-what-it-shows/issues/3',
+  };
+</script>
+
+[#4471](/kb/incidents/4471) is marked known: one issue, one fix queued. Its reports hold three
+problems, and the queued fix reaches only one of them.
+
+<Callout kind="warn">
+Fixing the parser leaves two problems open. Each one now has its own ticket.
+</Callout>
+
+## The problems
+
+<ProblemTable ticket={4471} {issues} />
+
+- **`parser`**: the shared parser reads dates month first; every tenant writes the day first.
+  A date with a day of 12 or less comes out swapped ("our 7 April reminder went out on 4 July").
+- **`hint`**: the booking-v3 form prints `MM/DD/YYYY` under its date field but reads the date
+  day first. People type what the hint says. Only reports sent through that form, from tenants
+  on booking-v3.
+- **`shift`**: the date moves by one day ("Lisbon got Tuesday, Toronto got Monday"). A swap
+  cannot do that; it looks like a time zone. These are the reports the desk already noted as
+  one-day moves.
+
+## How the reports were told apart
+
+- By tenant and channel (`causeOf`), never by the intake tag: the tag is a guess from the
+  reporter's browser, and it disagrees with the tenant.
+- One report per id: the export pages overlap, so some reports come twice.
+- The counts above are built from the export at render time. When the desk adds reports, the
+  table follows.
+
+## Why they were merged
+
+[Decision 0001](/kb/decisions/0001-dedupe-by-subject) merges reports whose subjects match,
+without reading the body. The problems share their subjects ("Wrong day on the invite" comes in
+all three), so three bugs became one ticket. Reading the body, or the tenant and channel, keeps
+them apart.
+
+<RenderStamp {signature} />
