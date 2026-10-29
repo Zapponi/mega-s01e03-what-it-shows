@@ -4,7 +4,7 @@ title: '#4471 · three problems, not one'
 owner: Zapponi
 status: open
 reviewed: 2026-10-29
-signature: Zapponi
+signature: 'v1.eyJzdWIiOiIyMDQ4IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMzMDkyMjIsImV4cCI6MTc5MzM5NTYyMn0.LG_43C9JYP34aUfEYBpD6s1JSEyjO0wJDdBFIegQm1w'
 ---
 
 <script>
