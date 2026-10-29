@@ -17,18 +17,24 @@ signature: 'v1.eyJzdWIiOiIyMDQ4IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpY
     hint: 'https://github.com/Zapponi/mega-s01e03-what-it-shows/issues/2',
     shift: 'https://github.com/Zapponi/mega-s01e03-what-it-shows/issues/3',
   };
+  const status = {
+    parser: 'fixed, per engineering; not verified',
+    hint: "won't fix; form retired",
+    shift: 'open; no answer yet',
+  };
 </script>
 
 [#4471](/kb/incidents/4471) is marked known: one issue, one fix queued. Its reports hold three
 problems. The queued fix is for the parser, which is one of them.
 
 <Callout kind="warn">
-Fixing the parser leaves two problems open. Each one now has its own ticket.
+#4471 was closed on 05 Oct. None of its three problems is done yet: each ticket below says what is
+still missing.
 </Callout>
 
 ## The problems
 
-<ProblemTable ticket={4471} {issues} />
+<ProblemTable ticket={4471} {issues} {status} />
 
 - **`parser`**: the shared parser reads dates month first; every tenant writes the day first.
   A date with a day of 12 or less comes out swapped ("our 7 April reminder went out on 4 July").
@@ -38,6 +44,21 @@ Fixing the parser leaves two problems open. Each one now has its own ticket.
 - **`shift`**: the date moves by one day ("Client in Lisbon got Tuesday. Client in Toronto got
   Monday."). A swap cannot do that; the Lisbon/Toronto report points at a time zone. These are
   the reports on the desk's own list of one-day moves (`desk-notes.json`).
+
+## Where each problem stands
+
+Engineering's update on #4471 (05 Oct) is a status line, with no link, test or data behind it.
+
+- **`parser`**: engineering says fixed ("fix(dates): parse dd/mm for eu locales"). Asked on the
+  ticket for the commit, the locales it covers (en-GB is not an EU locale, and a tenant here
+  writes en-GB), a test, and reports after the fix. Bookings already made keep the swapped date.
+- **`hint`**: won't fix, because the booking-v3 form is retired. That stops new cases if the form
+  is off; bookings already made through it keep the swapped date, some of them still ahead. The
+  tenant files here still list the three tenants on booking-v3.
+- **`shift`**: not in engineering's update. Open.
+
+The tickets stay open until each of these is answered. The export ends on 04 Oct, so nothing here
+shows whether reports stopped after the fix.
 
 ## How the reports were told apart
 

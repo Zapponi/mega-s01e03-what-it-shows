@@ -5,8 +5,12 @@
   import { tenantOf } from '#lib/kb/locales';
   import { groupByProblem, type Problem } from '#lib/kb/problems';
 
-  // issues: problem → link to its own ticket.
-  let { ticket, issues = {} }: { ticket: number; issues?: Partial<Record<Problem, string>> } = $props();
+  // issues: problem → link to its own ticket. status: problem → where it stands, in words.
+  let {
+    ticket,
+    issues = {},
+    status = {},
+  }: { ticket: number; issues?: Partial<Record<Problem, string>>; status?: Partial<Record<Problem, string>> } = $props();
 
   const result = $derived(groupByProblem(reports as Report[], ticket, tenantOf, notes.oneDayMove));
 </script>
@@ -17,7 +21,7 @@
 </p>
 
 <table>
-  <thead><tr><th>problem</th><th>reports</th><th>tenants</th><th>seen</th><th>ticket</th></tr></thead>
+  <thead><tr><th>problem</th><th>reports</th><th>tenants</th><th>seen</th><th>status</th><th>ticket</th></tr></thead>
   <tbody>
     {#each result.groups as g (g.problem)}
       <tr>
@@ -25,6 +29,7 @@
         <td>{g.reports.length}</td>
         <td>{g.tenants}</td>
         <td>{g.firstSeen} → {g.lastSeen}</td>
+        <td>{status[g.problem] ?? 'open'}</td>
         <td>{#if issues[g.problem]}<a href={issues[g.problem]}>own ticket</a>{:else}none yet{/if}</td>
       </tr>
     {/each}
