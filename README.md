@@ -34,3 +34,12 @@ Support desk. Decision records: whoever signed them.
 ---
 
 Exported 2026-10-04 from the `support` repo, `apps/kb/` → `src/`.
+
+## Render (added for the #4471 split)
+
+```
+npm install
+npm run render     # vite build (SvelteKit + mdsvex) → build/, then standalone pages → rendered/
+```
+
+`scripts/standalone.mjs` inlines each page's CSS and drops its scripts, so a page reads the same when opened from disk or attached to a ticket. Pages that compute dates (for example "n days ago") change with the day you render.

@@ -3,7 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "vite build"
+    "build": "vite build",
+    "standalone": "node scripts/standalone.mjs build rendered",
+    "render": "vite build && node scripts/standalone.mjs build rendered"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^4.0.0",
